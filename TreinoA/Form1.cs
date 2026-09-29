@@ -87,7 +87,21 @@ namespace TreinoA
 
         private void btnCommaOperation_Click(object sender, EventArgs e)
         {
-            txtDisplay.Text += ",";
+            bool canComma = true;
+
+            for (int i = 0; i < txtDisplay.Text.Length; i++)
+            {
+                if (txtDisplay.Text[i] == ',')
+                {
+                    canComma = false;
+                }
+            }
+
+            if (canComma)
+            {
+                txtDisplay.Text += ",";
+                isNewNumber = false;
+            }
         }
 
         private void btnPlusMinusOperation_Click(object sender, EventArgs e)
@@ -127,6 +141,12 @@ namespace TreinoA
                     }
                     result = value1 / value2; 
                     break;
+                case "":
+                    txtDisplay.Text = value2.ToString();
+                    txtDisplay.Text = txtDisplay.Text.ToString();
+                    operation = "";
+                    isNewNumber = true;
+                    return 0;
             }
 
             txtDisplay.Text = result.ToString();
